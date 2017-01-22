@@ -1,0 +1,18 @@
+<template name="coffeeLogBody">
+  <body>
+    {{>Template.dynamic template=nav}}
+    <div class="container">
+      <h1 class="text-center">Coffee-Log</h1>
+
+      {{> loginButtons}}
+
+      <label>In progress timer</label>
+      <code>
+        http://codepen.io/anon/pen/NdPbMv
+      </code>
+
+      {{>Template.dynamic template=main}}
+
+    </div>
+  </body>
+</template>

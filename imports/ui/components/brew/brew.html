@@ -1,0 +1,96 @@
+<template name="brew">
+  <form class="brew-form">
+
+    <h3>Basic Info</h3>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="form-group col-sm-12">
+          <label>Apparatus</label>
+          <input class="form-control" name="apparatus" placeholder="Hario, Kalita, Chemex, etc."/>
+        </div>
+
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="form-group col-sm-4">
+          <label>Bean</label>
+          <input class="form-control" name="bean" placeholder="Cool beans"/>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label>Grind Setting</label>
+          <input class="form-control" name="grindSetting" placeholder="Not too coarse, not too fine"/>
+        </div>
+
+        <div class="form-group col-sm-4">
+          <label>Bean Mass</label>
+          <div class="input-group">
+            <input class="form-control" name="beanMass" placeholder="Beans"/>
+            <span class="input-group-addon">g</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="form-group col-sm-6">
+      <label>Water Mass</label>
+      <div class="input-group">
+        <input class="form-control" name="waterMass" placeholder="Water"/>
+        <span class="input-group-addon">mL</span>
+      </div>
+    </div>
+
+    <div class="form-group col-sm-6">
+      <label>Water Temperature</label>
+      <div class="input-group">
+        <input class="form-control" name="waterTemp" placeholder="Only Celsius for now"/>
+        <span class="input-group-addon">&#8451;</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+    <hr />
+
+    <h3>Stages</h3>
+    {{#each stages}}
+      {{> stage}}
+    {{/each}}
+    <div class="container-fluid">
+      <div class="row">
+        <button class="add-stage btn btn-primary col-sm 6 pull-left">Add Stage</button>
+        <button class="remove-stage btn btn-primary col-sm 6 pull-right">Remove Stage</button>
+      </div>
+    </div>
+
+    <hr  />
+
+    <h3>Finish</h3>
+    <div class="form-group">
+      <label>Tasting Notes</label>
+      <textarea class="form-control" rows="3" name="tastingNotes" placeholder="Floral. Cholately. Cherry Lifesaver."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Technical Notes</label>
+      <textarea class="form-control" rows="3" name="techNotes" placeholder="Burned coffee is not bad coffee. It is the denoument of a Shakespearean tragedy."></textarea>
+    </div>
+
+    <hr />
+
+    <button type="submit" class="btn btn-primary btn-block">Make me coffee!</button>
+
+  </form>
+</template>

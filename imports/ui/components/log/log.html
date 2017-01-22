@@ -1,0 +1,19 @@
+<template name="log">
+  <ul>
+    {{#each brew}}
+      <h4>{{formatDate createdAt}}</h4>
+      <li>Barista: {{username}}</li>
+      <li>Bean: {{bean}}</li>
+      <li>Apparatus: {{apparatus}}</li>
+      <li>Grind Setting: {{grindSetting}}</li>
+      <li>Bean Mass: {{beanMass}} g</li>
+      <li>Water Mass: {{waterMass}} g</li>
+      <li>Water Temperature: {{waterTemp}} &#8451;</li>
+      <li>Stages: {{stages}}</li>
+      <li>Tasting Notes: {{tastingNotes}}</li>
+      <li>Technical Notes: {{techNotes}}</li>
+      <hr />
+    {{/each}}
+  </ul>
+
+</template>
