@@ -1,5 +1,5 @@
 <template name="brew">
-  <form class="brew-form">
+  <form class="brew-form" {{b "submit: submitBrew"}}>
 
     <h3>Basic Info</h3>
 
@@ -114,7 +114,7 @@
 
     <hr />
 
-    <button type="submit" class="btn btn-primary btn-block" {{b "click: submitBrew"}}>Make me coffee!</button>
+    <button type="submit" class="btn btn-primary btn-block">Make me coffee!</button>
 
   </form>
 </template>
