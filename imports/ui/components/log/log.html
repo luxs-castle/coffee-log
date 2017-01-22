@@ -1,6 +1,6 @@
 <template name="log">
   <ul>
-    {{#each brew}}
+    {{#each brews}}
       <h4>{{formatDate createdAt}}</h4>
       <li>Barista: {{username}}</li>
       <li>Bean: {{bean}}</li>
@@ -9,7 +9,25 @@
       <li>Bean Mass: {{beanMass}} g</li>
       <li>Water Mass: {{waterMass}} g</li>
       <li>Water Temperature: {{waterTemp}} &#8451;</li>
-      <li>Stages: {{stages}}</li>
+      <li>Stages:</li>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Water</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each stages}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.time}}</td>
+            <td>{{this.water}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
       <li>Tasting Notes: {{tastingNotes}}</li>
       <li>Technical Notes: {{techNotes}}</li>
       <hr />
