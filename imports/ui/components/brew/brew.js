@@ -1,68 +1,41 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-
-import { Brew } from '../../../api/brew/brew.js';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
 import './brew.html';
-import './stage.html';
 
-Template.brew.onCreated(function stagesOnCreated() {
-  this.state = new ReactiveDict();
-  this.state.set('stages', []);
-});
-
-Template.brew.helpers({
-  stages() {
-    const instance = Template.instance();
-    return instance.state.get('stages');
+Template.brew.viewmodel({
+  apparatus: '',
+  bean: '',
+  grindSetting: '',
+  beanMass: '',
+  waterMass: '',
+  waterTemp: '',
+  tastingNotes: '',
+  techNotes: '',
+  stages: [{name: 'Stage 1', water: '', time: ''}],
+  onCreated: function() {
+    // workaround for persistence bug where first stage values persist on nav
+    this.stages().pop();
+    this.stages().push({name: 'Stage 1', water: '', time: ''});
   },
-});
-
-Template.brew.events({
-  'submit .brew-form'(event, instance){
+  addStage: function(event) {
     event.preventDefault();
-
-    const target = event.target;
-    const bean = target.bean.value;
-    const apparatus = target.apparatus.value;
-    const grindSetting = target.grindSetting.value;
-    const beanMass= target.beanMass.value;
-    const waterMass = target.waterMass.value;
-    const waterTemp = target.waterTemp.value;
-    const tastingNotes = target.tastingNotes.value;
-    const techNotes = target.techNotes.value;
-    //lodash_for : each loop map reduce
-    const stages = getStageData(instance.state.get('stages'), target);
-
-    Meteor.call('brew.create', bean, apparatus, grindSetting,
-    beanMass, waterMass, waterTemp, stages, tastingNotes, techNotes);
-
-    target.reset();
+    this.stages().push(
+      {name: 'Stage ' + (this.stages().length + 1), water: '', time: ''});
   },
-  'click .add-stage'(event, instance){
-    const target = event.target;
-    let stages = instance.state.get('stages');
-    //for each time and water in stage, get and set value from form
-    let formValues =
-
-    stages.push({'stageNumber': stages.length + 1});
-    instance.state.set('stages', stages);
+  removeStage: function(event) {
+    event.preventDefault();
+    this.stages().pop();
   },
-
-  'click .remove-stage'(event, instance){
-    let stages = instance.state.get('stages');
-    stages.pop();
-    instance.state.set('stages', stages);
-  },
-
+  submitBrew: function(event) {
+    event.preventDefault();
+    Meteor.call('brew.create', this.bean(), this.apparatus(),
+      this.grindSetting(), this.beanMass(), this.waterMass(), this.waterTemp(),
+      Object.keys(this.stages())
+        .filter(key => !isNaN(key))
+        .map(key => this.stages()[key]),
+      this.tastingNotes(), this.techNotes());
+    FlowRouter.go('CoffeeLog.log');
+  }
 });
-
-function getStageData(stages, form) {
-  return stages.map(function(stage) {
-    if (form['water' + stage.stageNumber]
-        && form['time' + stage.stageNumber]) {
-      return [form['water' + stage.stageNumber].value,
-              form['time' + stage.stageNumber].value];
-    }
-  });
-}

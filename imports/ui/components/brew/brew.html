@@ -1,5 +1,5 @@
 <template name="brew">
-  <form class="brew-form">
+  <form class="brew-form" {{b "submit: submitBrew"}}>
 
     <h3>Basic Info</h3>
 
@@ -8,7 +8,7 @@
 
         <div class="form-group col-sm-12">
           <label>Apparatus</label>
-          <input class="form-control" name="apparatus" placeholder="Hario, Kalita, Chemex, etc."/>
+          <input class="form-control" name="apparatus" placeholder="Hario, Kalita, Chemex, etc." {{b "value: apparatus"}}/>
         </div>
 
       </div>
@@ -21,18 +21,18 @@
 
         <div class="form-group col-sm-4">
           <label>Bean</label>
-          <input class="form-control" name="bean" placeholder="Cool beans"/>
+          <input class="form-control" name="bean" placeholder="Cool beans" {{b "value: bean"}}/>
         </div>
 
         <div class="form-group col-sm-4">
           <label>Grind Setting</label>
-          <input class="form-control" name="grindSetting" placeholder="Not too coarse, not too fine"/>
+          <input class="form-control" name="grindSetting" placeholder="Not too coarse, not too fine" {{b "value: grindSetting"}}/>
         </div>
 
         <div class="form-group col-sm-4">
           <label>Bean Mass</label>
           <div class="input-group">
-            <input class="form-control" name="beanMass" placeholder="Beans"/>
+            <input class="form-control" name="beanMass" placeholder="Beans" {{b "value: beanMass"}}/>
             <span class="input-group-addon">g</span>
           </div>
         </div>
@@ -46,7 +46,7 @@
     <div class="form-group col-sm-6">
       <label>Water Mass</label>
       <div class="input-group">
-        <input class="form-control" name="waterMass" placeholder="Water"/>
+        <input class="form-control" name="waterMass" placeholder="Water" {{b "value: waterMass"}}/>
         <span class="input-group-addon">mL</span>
       </div>
     </div>
@@ -54,7 +54,7 @@
     <div class="form-group col-sm-6">
       <label>Water Temperature</label>
       <div class="input-group">
-        <input class="form-control" name="waterTemp" placeholder="Only Celsius for now"/>
+        <input class="form-control" name="waterTemp" placeholder="Only Celsius for now" {{b "value: waterTemp"}}/>
         <span class="input-group-addon">&#8451;</span>
       </div>
     </div>
@@ -67,12 +67,36 @@
 
     <h3>Stages</h3>
     {{#each stages}}
-      {{> stage}}
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="container-fluid">
+          <div class="row">
+            <label {{b "text: this.name"}}></label>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <div class="input-group">
+            <input class="form-control" placeholder="time" {{b "value: this.time"}}/>
+            <span class="input-group-addon">m:ss</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <div class="input-group">
+            <input class="form-control" placeholder="water" {{b "value: this.water"}}/>
+            <span class="input-group-addon">g</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
     {{/each}}
     <div class="container-fluid">
       <div class="row">
-        <button class="add-stage btn btn-primary col-sm 6 pull-left">Add Stage</button>
-        <button class="remove-stage btn btn-primary col-sm 6 pull-right">Remove Stage</button>
+        <button class="add-stage btn btn-primary col-sm 6 pull-left" {{b "click: addStage"}}>Add Stage</button>
+        <button class="remove-stage btn btn-primary col-sm 6 pull-right" {{b "click: removeStage"}}>Remove Stage</button>
       </div>
     </div>
 
@@ -81,11 +105,11 @@
     <h3>Finish</h3>
     <div class="form-group">
       <label>Tasting Notes</label>
-      <textarea class="form-control" rows="3" name="tastingNotes" placeholder="Floral. Cholately. Cherry Lifesaver."></textarea>
+      <textarea class="form-control" rows="3" name="tastingNotes" placeholder="Floral. Cholately. Cherry Lifesaver." {{b "value: tastingNotes"}}></textarea>
     </div>
     <div class="form-group">
       <label>Technical Notes</label>
-      <textarea class="form-control" rows="3" name="techNotes" placeholder="Burned coffee is not bad coffee. It is the denoument of a Shakespearean tragedy."></textarea>
+      <textarea class="form-control" rows="3" name="techNotes" placeholder="Burned coffee is not bad coffee. It is the denoument of a Shakespearean tragedy." {{b "value: techNotes"}}></textarea>
     </div>
 
     <hr />
