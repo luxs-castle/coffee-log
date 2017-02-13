@@ -73,6 +73,7 @@
         <div class="container-fluid">
           <div class="row">
             <label {{b "text: this.name"}}></label>
+            <span class="glyphicon glyphicon-remove pull-right delete-button" {{b "click: removeStage(this)"}}></span>
           </div>
         </div>
 
@@ -95,8 +96,7 @@
     {{/each}}
     <div class="container-fluid">
       <div class="row">
-        <button class="add-stage btn btn-primary col-sm 6 pull-left" {{b "click: addStage"}}>Add Stage</button>
-        <button class="remove-stage btn btn-primary col-sm 6 pull-right" {{b "click: removeStage"}}>Remove Stage</button>
+        <button class="add-stage btn btn-primary col-sm 6" {{b "click: addStage"}}>Add Stage</button>
       </div>
     </div>
 
