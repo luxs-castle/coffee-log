@@ -1,0 +1,17 @@
+<template name="beanCreate">
+  <form class="beanCreate-form" {{b "submit: submitBean"}}>
+    <h3>Beans Beans Beans</h3>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="form-group col-sm-12">
+          <label>Bean name</label>
+          <input class="form-control" name="beanName" placeholder="Something delicious" {{b "value: beanName"}}/>
+        </div>
+
+      </div>
+    </div>
+    <hr />
+    <button type="submit" class="btn btn-primary btn-block">Add me!</button>
+  </form>
+</template>
