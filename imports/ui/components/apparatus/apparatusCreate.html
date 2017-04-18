@@ -1,0 +1,17 @@
+<template name="apparatusCreate">
+  <form class="apparatusCreate-form" {{b "submit: submitApparatus"}}>
+    <h3>Tools Tools Tools</h3>
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="form-group col-sm-12">
+          <label>Apparatus name</label>
+          <input class="form-control" name="apparatusName" placeholder="Cool tools" {{b "value: apparatusName"}}/>
+        </div>
+
+      </div>
+    </div>
+    <hr />
+    <button type="submit" class="btn btn-primary btn-block">Add me!</button>
+  </form>
+</template>

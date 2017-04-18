@@ -7,6 +7,7 @@ import '../../ui/pages/brew/brew-page.js';
 import '../../ui/pages/log/log-page.js';
 import '../../ui/pages/inventory/inventory-page.js'
 import '../../ui/pages/inventory/bean/bean-page.js'
+import '../../ui/pages/inventory/apparatus/apparatus-page.js'
 
 FlowRouter.route('/', {
   name: 'CoffeeLog.home',
@@ -45,4 +46,11 @@ inventory.route('/beans', {
   action() {
       BlazeLayout.render('coffeeLogBody', { nav: 'navbar', main: 'beanPage'})
   },
+});
+
+  inventory.route('/apparatuses', {
+    name: 'CoffeeLog.inventory.apparatuses',
+    action() {
+      BlazeLayout.render('coffeeLogBody', { nav: 'navbar', main: 'apparatusPage'})
+    },
 });
